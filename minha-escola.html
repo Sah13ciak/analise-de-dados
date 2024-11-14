@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redes Sociais - Minha escola</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <header>
+        <h1>Relatório das redes sociais</h1>
+        <nav>
+            <a href="index.html">Mundo</a>
+            <a href="minha-escola.html">Minha escola</a>
+        </nav>
+    </header>
+    <main class="graficos-section">
+        <section id="graficos-container" class="graficos-container">
+            <!-- Gráfico de barras: uso de redes sociais por alunos -->
+            <div id="grafico-uso-alunos" style="width: 100%; height: 400px;"></div>
+            
+            <!-- Gráfico de pizza: redes sociais favoritas entre os alunos -->
+            <div id="grafico-redes-favoritas-alunos" style="width: 100%; height: 400px;"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Desenvolvido por Sabrina Trzeciak</p>
+    </footer>
+
+    <!-- Script para gerar os gráficos -->
+    <script>
+        window.onload = function() {
+            // Gráfico de barras: uso de redes sociais por alunos
+            const graficoUsoAlunos = {
+                data: [{
+                    x: ['Facebook', 'Instagram', 'Twitter', 'TikTok', 'BeReal'],
+                    y: [500, 600, 300, 450, 200], // Quantidade de alunos usando as redes (em número estimado)
+                    type: 'bar',
+                    marker: {
+                        color: '#bacca4'
+                    }
+                }],
+                layout: {
+                    title: 'Uso de Redes Sociais pelos Alunos (número estimado)',
+                    xaxis: { title: 'Rede Social' },
+                    yaxis: { title: 'Número de Alunos' },
+                    font: { size: 14 }
+                }
+            };
+
+            Plotly.newPlot('grafico-uso-alunos', graficoUsoAlunos.data, graficoUsoAlunos.layout);
+
+            // Gráfico de pizza: redes sociais favoritas entre os alunos
+            const graficoRedesFavoritasAlunos = {
+                data: [{
+                    values: [50, 30, 10, 5, 5], // Percentual de popularidade entre os alunos
+                    labels: ['Instagram', 'Facebook', 'TikTok', 'Twitter', 'BeReal'],
+                    type: 'pie',
+                    hole: 0.3, // Faz a parte central do gráfico ficar vazada (tipo Donut)
+                    marker: {
+                        colors: ['#018790', '#3b5998', '#69c9d0', '#1da1f2', '#0077b5']
+                    }
+                }],
+                layout: {
+                    title: 'Redes Sociais Favoritas entre os Alunos (Percentual)',
+                    font: { size: 14 },
+                    showlegend: true
+                }
+            };
+
+            Plotly.newPlot('grafico-redes-favoritas-alunos', graficoRedesFavoritasAlunos.data, graficoRedesFavoritasAlunos.layout);
+        };
+    </script>
+
+    <!-- Scripts adicionais -->
+    <script type="module" src="graficos/common.js"></script>
+    <script type="module" src="graficos/redesSociaisMinhaEscola.js"></script>
+</body>
+</html>
